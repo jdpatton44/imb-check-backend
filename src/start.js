@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config({ path: 'process.env' });
 import express from 'express'
 import 'express-async-errors'
 import logger from 'loglevel'
@@ -6,8 +7,10 @@ import {getRoutes} from './routes'
 function startServer({port = process.env.PORT} = {}) {
   const app = express()
 
+  // mount entire app to the /api route (or you could just do "/" if you want)
   app.use('/api', getRoutes())
-
+  
+  // add the generic error handler just in case errors are missed by middleware
   app.use(errorMiddleware)
 
   return new Promise((resolve) => {
