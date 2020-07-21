@@ -10,16 +10,17 @@ function getUspsRoutes() {
 }
 
 
-async function token(req, res) {
-    const token = IVtoken();
+  async function token(req, res) {
+    const token = await IVtoken();
+    console.log('token: ', token)
     res.send(token)
   }
   
   async function singleImb(req, res) {
     const {imb} = req.params;
-    const token = IVtoken();
-    const scanData = singleIMB(token, imb)
-    res.send(scanData)
+    const token = await IVtoken();
+    const scanData = await singleIMB(token, imb);
+    res.send((scanData))
   }
   
   export {getUspsRoutes}
