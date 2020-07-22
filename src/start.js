@@ -2,6 +2,7 @@ const dotenv = require('dotenv').config({ path: 'process.env' });
 import express from 'express'
 import cors from 'cors'
 import 'express-async-errors'
+import connection from './utils/db'
 import logger from 'loglevel'
 import {getRoutes} from './routes'
 
